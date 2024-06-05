@@ -18,7 +18,7 @@ interface Props {
   setPage: Dispatch<SetStateAction<number>>;
 }
 
-const pageSize = 3;
+const pageSize = 4;
 
 const List = ({ page, ...props }: Props) => {
   const { data, error } = useApi<Paginated<Company>>("companies", {

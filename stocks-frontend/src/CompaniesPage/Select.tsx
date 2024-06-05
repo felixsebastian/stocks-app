@@ -1,4 +1,11 @@
-import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 export interface Option<K> {
@@ -16,7 +23,10 @@ interface Props<K extends string> {
 const Select = <K extends string>({ options, ...props }: Props<K>) => (
   <Menu>
     <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-      {props.label} <b>{options.find((o) => o.key === props.value)?.label}</b>
+      <Box as="span" fontWeight={300}>
+        {props.label}
+      </Box>{" "}
+      <b>{options.find((o) => o.key === props.value)?.label}</b>
     </MenuButton>
     <MenuList>
       {options.map((option) => (

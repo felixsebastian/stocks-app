@@ -14,8 +14,7 @@ const queryClient = new QueryClient({
 const theme = extendTheme({
   styles: {
     global: {
-      body: { bg: baseTheme.colors.gray[100] },
-      heading: { color: baseTheme.colors.gray[50] },
+      body: { bg: baseTheme.colors.gray[200] },
     },
   },
   fonts: {

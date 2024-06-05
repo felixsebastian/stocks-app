@@ -14,11 +14,13 @@ import {
 import countryCodeToFlagEmoji from "country-code-to-flag-emoji";
 import { formatDate, parseISO } from "date-fns";
 import { Company } from "../types";
+import { pad, round } from "lodash";
+import formatPrice from "./formatPrice";
 
 const CompanyCard = (company: Company) => (
   <Card key={company.id} px={6} py={4}>
     <Flex align="center" gap={4}>
-      <Stack flexBasis="50%" flexGrow={1} mt={-1}>
+      <Stack flexBasis="35%" flexGrow={1} mt={-1}>
         <Heading as="h2" size="lg">
           {company.name}
         </Heading>
@@ -28,18 +30,22 @@ const CompanyCard = (company: Company) => (
         </Text>
       </Stack>
       <Spacer />
-      <HStack flexBasis="50%" flexGrow={1} spacing={4} align="flex-start">
+      <HStack flexBasis="65%" flexGrow={1} spacing={4} align="flex-start">
         <Stat>
           <StatLabel>Snowflake score</StatLabel>
-          <StatNumber fontSize="4xl">{company.snowflake_score}</StatNumber>
+          <StatNumber fontSize="5xl" mt={-2}>
+            {company.snowflake_score}
+          </StatNumber>
         </Stat>
         <Stat>
           <StatLabel>Volatility</StatLabel>
-          <StatNumber fontSize="4xl">{company.volatility}</StatNumber>
+          <StatNumber fontSize="5xl" mt={-2}>
+            {round(company.volatility)}
+          </StatNumber>
         </Stat>
         <Stat>
           <StatLabel>Current price</StatLabel>
-          <StatNumber>${company.last_price}</StatNumber>
+          <StatNumber>{formatPrice(company.last_price)}</StatNumber>
           <StatHelpText>
             As of {formatDate(parseISO(company.last_price_date), "do MMM yyyy")}
           </StatHelpText>

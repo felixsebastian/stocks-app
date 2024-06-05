@@ -1,16 +1,9 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-} from "@chakra-ui/react";
+import { Card, Text } from "@chakra-ui/react";
 
 const EmptyState = () => (
-  <Alert>
-    <AlertIcon />
-    <AlertTitle>No companies to show</AlertTitle>
-    <AlertDescription>Try changing your filters</AlertDescription>
-  </Alert>
+  <Card p={12}>
+    <Text>No companies to show! Try changing your filters</Text>
+  </Card>
 );
 
 export default EmptyState;
