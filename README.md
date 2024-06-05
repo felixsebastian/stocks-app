@@ -2,8 +2,6 @@
 
 ## Running locally
 
-Make sure you have node 18 installed.
+It's recommended to use node 18 with this project.
 
-Run `npm i` and `npm run dev` from both the frontend and api directories.
-
-Open [http://localhost:5070/](http://localhost:5070/) in your browser.
+To get started, simply run `./run.sh` and open [http://localhost:5070/](http://localhost:5070/) in your browser.
