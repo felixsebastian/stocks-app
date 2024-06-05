@@ -2,9 +2,9 @@ import { omit, first } from "lodash";
 import QueryParams from "../QueryParams";
 import getCompaniesBySnowflakeScore from "./getCompaniesBySnowflakeScore";
 import getCompaniesByVolatility from "./getCompaniesByVolatility";
-import { Company, CompanyRow } from "./types";
+import { CompanyRow, Company } from "./types";
 
-export default async (params: QueryParams) => {
+const getCompaniesQuery = async (params: QueryParams) => {
   let companies: CompanyRow[];
 
   if (params.sortBy === "snowflake_score") {
@@ -15,7 +15,6 @@ export default async (params: QueryParams) => {
 
   const fieldsToOmit = ["total_companies"];
   if (!params.includePrices) fieldsToOmit.push("price_history");
-
   const items = companies.map((c) => omit(c, fieldsToOmit)) as Company[];
 
   return {
@@ -23,3 +22,5 @@ export default async (params: QueryParams) => {
     total_items: first(companies)?.total_companies ?? 0,
   };
 };
+
+export default getCompaniesQuery;

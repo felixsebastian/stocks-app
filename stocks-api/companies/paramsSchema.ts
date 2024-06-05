@@ -1,6 +1,6 @@
 import z from "zod";
 
-export default z.object({
+const paramsSchema = z.object({
   sortBy: z.enum(["snowflake_score", "volatility"]).default("snowflake_score"),
   exchange: z
     .string()
@@ -14,3 +14,5 @@ export default z.object({
   offset: z.coerce.number().default(0),
   includePrices: z.enum(["true", "false"]).transform((s) => JSON.parse(s)),
 });
+
+export default paramsSchema;

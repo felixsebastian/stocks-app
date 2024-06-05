@@ -1,8 +1,10 @@
 import knex from "knex";
 
-export default knex({
+const db = knex({
   client: "sqlite3",
   connection: {
     filename: "./sws.sqlite3",
   },
 });
+
+export default db;

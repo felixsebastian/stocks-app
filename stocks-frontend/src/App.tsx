@@ -32,16 +32,14 @@ const Fallback = ({ error }: Props) => {
   return <p>something went wrong</p>;
 };
 
-function App() {
-  return (
-    <ErrorBoundary FallbackComponent={Fallback}>
-      <QueryClientProvider client={queryClient}>
-        <ChakraProvider theme={theme}>
-          <CompaniesPage />
-        </ChakraProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
-  );
-}
+const App = () => (
+  <ErrorBoundary FallbackComponent={Fallback}>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <CompaniesPage />
+      </ChakraProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
+);
 
 export default App;

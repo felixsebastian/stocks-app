@@ -1,7 +1,7 @@
 import getPrices from "./getPrices";
 import { CompanyRow, PriceHistory, WithPriceHistory } from "./types";
 
-export default async (companies: CompanyRow[]) => {
+const includePrices = async (companies: CompanyRow[]) => {
   const ids = companies.map((c) => c.id);
   const prices = await getPrices(ids);
 
@@ -21,3 +21,5 @@ export default async (companies: CompanyRow[]) => {
 
   return companies as (CompanyRow & WithPriceHistory)[];
 };
+
+export default includePrices;

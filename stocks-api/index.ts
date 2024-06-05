@@ -4,7 +4,7 @@ import companiesRouter from "./companies/router";
 
 const app = express();
 const port = 47582;
-app.use(cors({ origin: "http://localhost:50749" }));
+app.use(cors({ origin: "http://localhost:5070" }));
 app.use(express.json());
 app.use(companiesRouter);
 

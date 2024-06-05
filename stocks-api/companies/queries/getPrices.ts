@@ -6,10 +6,13 @@ interface CompanyPrice {
   date: string;
 }
 
-export default (ids: string[]): Promise<CompanyPrice[]> =>
-  db
+const getPrices = (ids: string[]): Promise<CompanyPrice[]> => {
+  return db
     .select("company_id", "price", "date")
     .from("swsCompanyPriceClose")
     .whereIn("company_id", ids)
     .orderBy("company_id", "ASC")
     .orderBy("date", "DESC");
+};
+
+export default getPrices;

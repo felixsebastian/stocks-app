@@ -1,6 +1,6 @@
 import db from "../../db";
 
-export default (exchange: string, scoreFilter: string) => {
+const basicCompaniesQuery = (exchange: string, scoreFilter: string) => {
   const query = db
     .with("lastPrices", (qb) =>
       qb
@@ -32,3 +32,5 @@ export default (exchange: string, scoreFilter: string) => {
 
   return query;
 };
+
+export default basicCompaniesQuery;
