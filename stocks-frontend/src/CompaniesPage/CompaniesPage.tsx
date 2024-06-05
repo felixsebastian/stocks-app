@@ -2,23 +2,10 @@ import { useState } from "react";
 import Select from "./Select";
 import { SortBy } from "../types";
 import List from "./List";
-import { Card, HStack, Heading, Spacer, Stack } from "@chakra-ui/react";
+import { HStack, Heading, Spacer, Stack } from "@chakra-ui/react";
 import { ExchangeOption, exchangeOptions } from "./exchanges";
-
-const sortByOptions = [
-  { key: "snowflake_score", label: "Snowflake score" } as const,
-  { key: "volatility", label: "Volatility" } as const,
-];
-
-const snowflakeScoreOptions = [
-  { key: "none", label: "Any" } as const,
-  { key: "gt_20", label: "20+" } as const,
-  { key: "gt_15", label: "15+" } as const,
-  { key: "gt_10", label: "10+" } as const,
-  { key: "gt_5", label: "5+" } as const,
-];
-
-export type ScoreFilter = (typeof snowflakeScoreOptions)[number]["key"];
+import { ScoreFilter } from "./types";
+import { snowflakeScoreOptions, sortByOptions } from "./options";
 
 const CompaniesPage = () => {
   const [exchange, setExchange] = useState<ExchangeOption>("none");

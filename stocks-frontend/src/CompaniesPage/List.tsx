@@ -4,11 +4,11 @@ import ErrorMessage from "./ErrorMessage";
 import { ExchangeOption } from "./exchanges";
 import useApi from "../useApi";
 import { Dispatch, SetStateAction } from "react";
-import { ScoreFilter } from ".";
 import LoadingState from "./LoadingState";
 import EmptyState from "./EmptyState";
 import { Stack } from "@chakra-ui/react";
 import Pagination from "./Pagination";
+import { ScoreFilter } from "./types";
 
 interface Props {
   sortBy: SortBy;

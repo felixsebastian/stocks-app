@@ -1,8 +1,6 @@
-export default interface GetCompaniesQueryParams {
-  sortBy: "snowflake_score" | "volatility";
-  scoreFilter: string;
-  exchange: string;
-  limit: number;
-  offset: number;
-  includePrices: boolean;
-}
+import paramsSchema from "./paramsSchema";
+import { z } from "zod";
+
+type QueryParams = z.infer<typeof paramsSchema>;
+
+export default QueryParams;
