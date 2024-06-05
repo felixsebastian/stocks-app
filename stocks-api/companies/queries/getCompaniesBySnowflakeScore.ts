@@ -4,7 +4,7 @@ import basicCompaniesQuery from "./basicCompaniesQuery";
 import QueryParams from "../QueryParams";
 import { CompanyRow } from "./types";
 
-const getCompaniesBySnowflakeScore = async (params: QueryParams) => {
+export default async (params: QueryParams) => {
   const companies: CompanyRow[] = await basicCompaniesQuery(
     params.exchange,
     params.scoreFilter,
@@ -14,8 +14,5 @@ const getCompaniesBySnowflakeScore = async (params: QueryParams) => {
     .limit(params.limit)
     .offset(params.limit * params.offset);
 
-  const companiesWithPrices = await includePrices(companies);
-  return await includeVolatility(params, companiesWithPrices);
+  return await includeVolatility(await includePrices(companies));
 };
-
-export default getCompaniesBySnowflakeScore;

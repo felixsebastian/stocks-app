@@ -21,7 +21,8 @@ export default (exchange: string, scoreFilter: string) => {
       db.raw("COUNT(*) OVER() AS total_companies"),
     )
     .from("swsCompany")
-    .leftJoin("swsCompanyScore", "swsCompany.id", "swsCompanyScore.company_id");
+    .leftJoin("swsCompanyScore", "swsCompany.id", "swsCompanyScore.company_id")
+    .leftJoin("lastPrices", "swsCompany.id", "lastPrices.company_id");
 
   if (exchange !== "none") query.where("exchange_symbol", "=", exchange);
 

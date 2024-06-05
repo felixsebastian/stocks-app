@@ -15,7 +15,12 @@ export interface CompanyRow extends BasicCompany {
   total_companies: number;
 }
 
-export interface FinalCompany extends BasicCompany {
+export interface WithPriceHistory {
   price_history: PriceHistory[];
+}
+
+export interface WithVolatility {
   volatility: number;
 }
+
+export interface Company extends Partial<WithPriceHistory & WithVolatility> {}

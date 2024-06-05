@@ -1,25 +1,9 @@
-import db from "../../db";
-import { PriceHistory } from "./types";
+import getPrices from "./getPrices";
+import { CompanyRow, PriceHistory, WithPriceHistory } from "./types";
 
-interface Company {
-  id: string;
-}
-
-interface CompanyPrice {
-  company_id: string;
-  price: number;
-  date: string;
-}
-
-export default async <T extends Company>(companies: T[]) => {
+export default async (companies: CompanyRow[]) => {
   const ids = companies.map((c) => c.id);
-
-  const prices: CompanyPrice[] = await db
-    .select("company_id", "price", "date")
-    .from("swsCompanyPriceClose")
-    .whereIn("company_id", ids)
-    .orderBy("company_id", "ASC")
-    .orderBy("date", "DESC");
+  const prices = await getPrices(ids);
 
   const companyPrices = prices.reduce<Record<string, PriceHistory[]>>(
     (result, next) => {
@@ -30,13 +14,10 @@ export default async <T extends Company>(companies: T[]) => {
     {},
   );
 
-  type WithPriceHistory<T> = T & {
-    price_history: PriceHistory[];
-  };
-
   for (const company of companies) {
-    (company as WithPriceHistory<T>).price_history = companyPrices[company.id];
+    (company as CompanyRow & WithPriceHistory).price_history! =
+      companyPrices[company.id];
   }
 
-  return companies as WithPriceHistory<T>[];
+  return companies as (CompanyRow & WithPriceHistory)[];
 };

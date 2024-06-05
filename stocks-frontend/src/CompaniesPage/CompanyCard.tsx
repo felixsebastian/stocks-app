@@ -14,7 +14,7 @@ import {
 import countryCodeToFlagEmoji from "country-code-to-flag-emoji";
 import { formatDate, parseISO } from "date-fns";
 import { Company } from "../types";
-import { pad, round } from "lodash";
+import { round } from "lodash";
 import formatPrice from "./formatPrice";
 
 const CompanyCard = (company: Company) => (
